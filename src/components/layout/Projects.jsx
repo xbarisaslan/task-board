@@ -21,7 +21,7 @@ function Projects() {
   }, []);
 
   return (
-    <div className="hidden md:flex flex-col items-start justify-between p-8 border-r w-[15%]">
+    <div className="hidden md:flex flex-col items-start justify-between p-8 border-r w-[18%]">
       <div className="flex flex-col w-full">
         <h1 className="font-semibold text-xl">Projeler</h1>
         <div className="flex flex-col gap-y-5 pt-6 w-full">
@@ -35,7 +35,7 @@ function Projects() {
         {profile && (
           <>
             <p className="font-semibold text-lg">{profile.data.fullName}</p>
-            <p>{profile.data.email}</p>
+            <p className="text-sm">{profile.data.email}</p>
           </>
         )}
       </div>

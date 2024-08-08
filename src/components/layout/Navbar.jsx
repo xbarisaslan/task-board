@@ -5,6 +5,7 @@ function Navbar() {
       <div className="flex gap-x-4">
         <img className="w-7" src="/bell.svg" />
         <img className="w-7" src="/bell.svg" />
+        <img className="w-10" src="/logo.png" />
       </div>
     </div>
   );
