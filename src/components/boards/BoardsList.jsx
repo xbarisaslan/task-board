@@ -90,13 +90,13 @@ const BoardsList = () => {
                     onClick={() => openModal(task)}
                   >
                     <div
-                      className="rounded-full float-right w-8 text-center h-8 border "
+                      className="rounded-full float-right w-6 text-center h-6 border "
                       onClick={(e) => {
                         e.stopPropagation();
                         handleDeleteTask(task.id);
                       }}
                     >
-                      ...
+                      <img src="/trash.png" />
                     </div>
                     <h1>{task.name}</h1>
                     <p className="text-[#475467]">{task.description}</p>
