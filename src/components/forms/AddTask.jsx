@@ -9,8 +9,10 @@ function AddTask({ boardId, onTaskAdded }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const taskId = crypto.randomUUID();
     try {
       const data = await addTask({
+        id: taskId,
         name,
         description,
         startDate,

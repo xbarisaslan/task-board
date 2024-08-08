@@ -19,7 +19,7 @@ export async function deleteTask(taskId) {
     }
 
     // Optionally, return some confirmation or the response data
-    return { success: true };
+    console.log("a");
   } catch (error) {
     console.error("Error deleting task:", error);
     throw error;

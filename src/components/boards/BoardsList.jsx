@@ -7,8 +7,8 @@ import Filters from "@/components/boards/Filters";
 import AddTask from "@/components/forms/AddTask";
 import Modal from "@/components/ui/Modal";
 
-const BoardsPage = () => {
-  const [boards, setBoards] = useState([]);
+const BoardsList = () => {
+  const [boards, setBoards] = useState({ data: [] }); // Initialize as an object with data array
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeBoardId, setActiveBoardId] = useState(null);
@@ -25,7 +25,7 @@ const BoardsPage = () => {
     const getBoards = async () => {
       try {
         const data = await fetchBoards();
-        setBoards(data);
+        setBoards(data); // Ensure data is set to the full object returned by fetchBoards
       } catch (error) {
         setError(error.message);
       } finally {
@@ -46,13 +46,15 @@ const BoardsPage = () => {
 
   const handleDeleteTask = async (taskId) => {
     try {
+      console.log(taskId);
       await deleteTask(taskId);
-      setBoards(
-        boards.map((board) => ({
+      setBoards({
+        ...boards,
+        data: boards.data.map((board) => ({
           ...board,
           tasks: board.tasks.filter((task) => task.id !== taskId),
-        }))
-      );
+        })),
+      });
     } catch (error) {
       console.error("Failed to delete task:", error);
     }
@@ -90,7 +92,7 @@ const BoardsPage = () => {
                     <div
                       className="rounded-full float-right w-8 text-center h-8 border "
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent triggering onClick of the list item
+                        e.stopPropagation();
                         handleDeleteTask(task.id);
                       }}
                     >
@@ -163,4 +165,4 @@ const BoardsPage = () => {
   );
 };
 
-export default BoardsPage;
+export default BoardsList;
