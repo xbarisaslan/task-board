@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchBoards } from "@/lib/fetch-boards";
+import { deleteTask } from "@/lib/delete-task";
 import Filters from "@/components/boards/Filters";
 import AddTask from "@/components/forms/AddTask";
 import Modal from "@/components/ui/Modal";
@@ -43,6 +44,20 @@ const BoardsPage = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const handleDeleteTask = async (taskId) => {
+    try {
+      await deleteTask(taskId);
+      setBoards(
+        boards.map((board) => ({
+          ...board,
+          tasks: board.tasks.filter((task) => task.id !== taskId),
+        }))
+      );
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col grow bg-[#F3F6FD] p-6 md:p-12 gap-6 overflow-x-scroll">
       <h1 className="text-2xl text-[#145389] font-semibold">Frontend Case</h1>
@@ -72,7 +87,13 @@ const BoardsPage = () => {
                     className="border p-3 rounded-xl space-y-2"
                     onClick={() => openModal(task)}
                   >
-                    <div className="rounded-full float-right w-8 text-center h-8 border ">
+                    <div
+                      className="rounded-full float-right w-8 text-center h-8 border "
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent triggering onClick of the list item
+                        handleDeleteTask(task.id);
+                      }}
+                    >
                       ...
                     </div>
                     <h1>{task.name}</h1>
