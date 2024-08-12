@@ -1,13 +1,12 @@
 export async function addTask(task) {
   try {
     const response = await fetch(
-      "https://api.management.parse25proje.link/api/tasks",
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/tasks`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyOCwiaWF0IjoxNzIzMDE1MTEwfQ.8Chh9H4GqAKmRtikZVtTGC_cIeJkIfnk7EgrY34jsFU",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
         },
         body: JSON.stringify(task),
       }

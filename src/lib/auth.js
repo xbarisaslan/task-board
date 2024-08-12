@@ -1,7 +1,7 @@
 export async function login(email, password) {
   try {
     const response = await fetch(
-      "https://api.management.parse25proje.link/api/auth/login",
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/login`,
       {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ export async function login(email, password) {
 export async function register(fullName, email, password) {
   try {
     const response = await fetch(
-      "https://api.management.parse25proje.link/api/auth/register",
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/register`,
       {
         method: "POST",
         headers: {

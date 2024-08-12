@@ -1,6 +1,6 @@
 function Sidebar() {
   return (
-    <div className="bg-[#363F72] px-3 hidden md:flex flex-col justify-between items-center ">
+    <div className="bg-[#363F72] px-3 hidden md:flex flex-col justify-between items-center">
       <div className="flex flex-col items-center gap-y-5 pt-6">
         <img className="w-8" src="/bell.svg" />
         <img className="w-8" src="/bell.svg" />
